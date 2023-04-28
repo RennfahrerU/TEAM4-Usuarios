@@ -1,5 +1,6 @@
 package co.edu.uceva.usuarios_service.UsuariosServiceApplication.model.entities;
 
+import co.edu.uceva.usuarios_service.UsuariosServiceApplication.model.util.Encriptar;
 import com.sun.istack.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -30,5 +31,15 @@ public class Usuario {
     @NotNull
     @Size(min=8, max = 20, message = "La contraseña debe terner al menos 8 caracteres y maximo 20")
     private String contrasena;
+
+    public String validarUsuario(){
+
+        String contrasenaEncriptada = Encriptar.md5(contrasena);
+        System.out.println("Contraseña Encriptada: "+contrasenaEncriptada);
+
+        //Optional<usuariodb> devdbAutenticado = this..login(this.id,contrasenaEncriptada);
+
+        return "";
+    }
 
 }
