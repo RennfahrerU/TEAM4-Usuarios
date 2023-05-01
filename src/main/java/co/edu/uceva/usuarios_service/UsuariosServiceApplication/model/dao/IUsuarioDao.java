@@ -4,4 +4,5 @@ import co.edu.uceva.usuarios_service.UsuariosServiceApplication.model.entities.U
 import org.springframework.data.repository.CrudRepository;
 
 public interface IUsuarioDao extends CrudRepository<Usuario, Long> {
+    Usuario findByNombre(String nombre);
 }
