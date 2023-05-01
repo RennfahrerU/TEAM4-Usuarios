@@ -1,7 +1,6 @@
 package co.edu.uceva.usuarios_service.UsuariosServiceApplication.model.service;
 
 import java.util.List;
-import co.edu.uceva.usuarios_service.UsuariosServiceApplication.model.entities.Usuario;
 
 public interface IUsuarioService {
 

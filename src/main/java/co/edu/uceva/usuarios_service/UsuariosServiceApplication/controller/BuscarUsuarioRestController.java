@@ -1,12 +1,10 @@
 package co.edu.uceva.usuarios_service.UsuariosServiceApplication.controller;
 import co.edu.uceva.usuarios_service.UsuariosServiceApplication.model.service.IUsuarioService;
-import co.edu.uceva.usuarios_service.UsuariosServiceApplication.model.entities.Usuario;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
