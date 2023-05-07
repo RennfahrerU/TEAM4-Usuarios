@@ -1,9 +1,12 @@
 package co.edu.uceva.usuarios_service.UsuariosServiceApplication.model.service;
 
 import co.edu.uceva.usuarios_service.UsuariosServiceApplication.model.dao.IUsuarioDao;
+import co.edu.uceva.usuarios_service.UsuariosServiceApplication.model.entities.Usuario;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 @Service
 public class UsuarioServiceImpl implements IUsuarioService {
 
@@ -17,6 +20,10 @@ public class UsuarioServiceImpl implements IUsuarioService {
 
     @Override
     public Usuario findByNombre(String nombre){ return usuarioDao.findByNombre(nombre);}
-    public Usuario findAllByNombre(String nombre){ return usuarioDao.findAllByNombre(nombre);}
+
+    @Override
+    public List<Usuario> findAllByNombre(String nombre) {
+        return usuarioDao.findAllByNombre(nombre);
+    }
 
 }
