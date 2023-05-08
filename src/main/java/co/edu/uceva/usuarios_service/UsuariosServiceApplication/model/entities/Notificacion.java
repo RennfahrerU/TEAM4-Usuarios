@@ -14,13 +14,18 @@ import java.util.Date;
 @NoArgsConstructor
 @Entity
 public class Notificacion {
-    @Id
+
+    /**
+     * Se dejo en comentario ya que por recomencacion del profesor se pospone esta implementacion
+     */
+
+   /* @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String mensaje;
    // private Date fecha;
     @ManyToOne
     @JoinColumn
-    private Usuario usuario;
+    private Usuario usuario;*/
 
 }

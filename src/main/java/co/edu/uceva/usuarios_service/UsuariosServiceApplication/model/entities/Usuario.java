@@ -33,6 +33,10 @@ public class Usuario {
     @Column(name = "nombre")
     private String nombre;
 
+    @NotNull
+    @Column(name = "apellido")
+    private  String apellido;
+
     public String validarUsuario() {
 
         String contrasenaEncriptada = Encriptar.md5(contrasena);

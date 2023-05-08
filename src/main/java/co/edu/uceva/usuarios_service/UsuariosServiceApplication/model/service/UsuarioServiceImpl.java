@@ -4,6 +4,7 @@ import co.edu.uceva.usuarios_service.UsuariosServiceApplication.model.dao.IUsuar
 import co.edu.uceva.usuarios_service.UsuariosServiceApplication.model.entities.Usuario;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -14,15 +15,17 @@ public class UsuarioServiceImpl implements IUsuarioService {
     IUsuarioDao usuarioDao;
 
     @Override
-    public Usuario save(Usuario usuario){
+    public Usuario save(Usuario usuario) {
         return usuarioDao.save(usuario);
     }
+
     @Override
-    public void delete(Usuario usuario){
+    public void delete(Usuario usuario) {
         usuarioDao.delete(usuario);
     }
+
     @Override
-    public Usuario update(Usuario usuario){
+    public Usuario update(Usuario usuario) {
         return usuarioDao.save(usuario);
     }
 
@@ -37,8 +40,13 @@ public class UsuarioServiceImpl implements IUsuarioService {
     }
 
     @Override
-    public Usuario findByNombre(String nombre){ return usuarioDao.findByNombre(nombre);}
+    public Usuario findByNombre(String nombre) {
+        return usuarioDao.findByNombre(nombre);
+    }
 
-    public Usuario findAllByNombre(String nombre){ return (Usuario) usuarioDao.findAllByNombre(nombre);}
+    @Override
+    public List<Usuario> findAllByNombre(String nombre) {
+        return usuarioDao.findAllByNombre(nombre);
+    }
 
 }

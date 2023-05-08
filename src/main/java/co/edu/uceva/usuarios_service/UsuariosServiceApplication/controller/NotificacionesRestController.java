@@ -1,4 +1,5 @@
 package co.edu.uceva.usuarios_service.UsuariosServiceApplication.controller;
+
 import co.edu.uceva.usuarios_service.UsuariosServiceApplication.model.entities.Notificacion;
 import co.edu.uceva.usuarios_service.UsuariosServiceApplication.model.service.INotificacionService;
 import lombok.AllArgsConstructor;
@@ -16,7 +17,12 @@ import org.springframework.web.bind.annotation.RestController;
 @AllArgsConstructor
 @NoArgsConstructor
 public class NotificacionesRestController {
-   @Autowired
+
+    /**
+     * Se dejo en comentario ya que por recomencacion del profesor se pospone esta implementacion
+     */
+
+    /* @Autowired
      INotificacionService NotificacionService;
     @Autowired
     private RabbitTemplate rabbitTemplate;
@@ -27,7 +33,7 @@ public class NotificacionesRestController {
     public ResponseEntity<Void> sendNotification(@RequestBody Notificacion notificacion) {
         rabbitTemplate.convertAndSend("direct-exchange", "notificaciones-routing-key", notificacion);
         return ResponseEntity.ok().build();
-    }
-   }
+    }*/
+}
 
 

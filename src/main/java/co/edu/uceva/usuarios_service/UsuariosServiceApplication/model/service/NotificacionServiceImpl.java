@@ -11,7 +11,10 @@ import java.util.Optional;
 
 @Service
 public class NotificacionServiceImpl implements INotificacionService {
-    @Autowired
+    /**
+     * Se dejo en comentario ya que por recomencacion del profesor se pospone esta implementacion
+     */
+   /* @Autowired
     INotificaionDao notificacionDao;
 
     @Autowired
@@ -48,5 +51,5 @@ public class NotificacionServiceImpl implements INotificacionService {
         // Lógica para enviar notificación a través de un proveedor externo
         // Por ejemplo, enviar correo electrónico o notificación push
         System.out.println("Notificación enviada: " + notificacion.getMensaje());
-    }
+    }*/
 }
