@@ -26,17 +26,17 @@ public class Usuario {
     private String email;
 
     @NotNull
-    @Size(min=8, max = 20, message = "La contraseña debe tener al menos 8 caracteres y maximo 20")
+    @Size(min = 8, max = 20, message = "La contraseña debe tener al menos 8 caracteres y maximo 20")
     private String contrasena;
 
     @NotNull
-    @Column(name="nombre")
+    @Column(name = "nombre")
     private String nombre;
 
-    public String validarUsuario(){
+    public String validarUsuario() {
 
         String contrasenaEncriptada = Encriptar.md5(contrasena);
-        System.out.println("Contraseña Encriptada: "+contrasenaEncriptada);
+        System.out.println("Contraseña Encriptada: " + contrasenaEncriptada);
 
         //Optional<usuariodb> devdbAutenticado = this..login(this.id,contrasenaEncriptada);
 
