@@ -82,8 +82,13 @@ public class UsuarioRestController {
         return usuarioService.update(usuario);
     }
 
-    @GetMapping("/buscarusuariosnombre/{nombre}")
-    public List<Usuario> buscarPorNombreCoincidente(@PathVariable String nombre) {
-        return usuarioService.searchByNombre(nombre);
+    @GetMapping("/buscarusuariosnombreyapellido/{termino}")
+    public List<Usuario> buscarPorNombreYApellido(@PathVariable String termino) {
+        return usuarioService.buscarPorNombreYApellido(termino);
+    }
+
+    @GetMapping("/buscarusuariosnombreyapellido2/{nombre}/{apellido}")
+    public List<Usuario> buscarPorNombreYApellido(@PathVariable String nombre, @PathVariable String apellido) {
+        return usuarioService.buscarPorNombreYApellido2(nombre, apellido);
     }
 }
