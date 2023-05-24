@@ -31,7 +31,6 @@ public class UsuarioRestController {
     @GetMapping("/usuarios/{id}")
     public Usuario buscarUsuario(@PathVariable("id") Long id) {//pathvariable es para sacar de la url esa palabra id
         return usuarioService.findById(id);
-
     }
 
     @PostMapping("/usuarios")

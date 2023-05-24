@@ -22,11 +22,7 @@ public class BuscarUsuarioRestController {
     public Usuario buscarID(@PathVariable("id") Long id) {
         return usuarioService.findById(id);
     }
-/*
-    @GetMapping("/usuarionombre/{nombre}")
-    public Usuario buscarNombre(@PathVariable("nombre") String nombre){
-        return usuarioService.findByNombre(nombre);
-    }*/
+
 
     @GetMapping("/usuariosnombre/{nombre}")
     public List<Usuario> buscarPorNombre(@PathVariable String nombre) {
