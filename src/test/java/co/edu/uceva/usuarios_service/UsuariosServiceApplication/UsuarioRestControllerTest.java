@@ -69,6 +69,21 @@ public class UsuarioRestControllerTest {
                     .andExpect(MockMvcResultMatchers.jsonPath("$", hasSize(2)))
                     .andExpect(MockMvcResultMatchers.jsonPath("$[0].nombre", Matchers.is(usuario1.getNombre())))
                     .andExpect(MockMvcResultMatchers.jsonPath("$[1].nombre", Matchers.is(usuario2.getNombre())));
+
+            usuarioService.delete(usuario1);
+            usuarioService.delete(usuario2);
+        }
+
+        @Test
+        public void testBuscarUsarioId() throws  Exception{
+            Usuario usuario= new Usuario();
+            usuario.setNombre("Paco");
+            usuarioService.save(usuario);
+
+            this.mockMvc.perform(get("/usuario-service/buscarusuraioid/{id}",usuario.getId()))
+                    .andExpect(status().isOk())
+                    .andExpect((ResultMatcher) MockMvcResultMatchers.jsonPath("$.nombre", is(usuario.getNombre())));
+            usuarioService.delete(usuario);
         }
 
 
