@@ -8,8 +8,6 @@ import org.springframework.data.repository.CrudRepository;
 import java.util.List;
 
 public interface IUsuarioDao extends CrudRepository<Usuario, Long> {
-    Usuario findByNombre(String nombre);
-
     List<Usuario> findAllByNombre(String nombre);
 
 }
