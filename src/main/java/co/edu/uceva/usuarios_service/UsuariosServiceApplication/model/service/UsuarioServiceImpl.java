@@ -40,11 +40,6 @@ public class UsuarioServiceImpl implements IUsuarioService {
     }
 
     @Override
-    public Usuario findByNombre(String nombre) {
-        return usuarioDao.findByNombre(nombre);
-    }
-
-    @Override
     public List<Usuario> findAllByNombre(String nombre) {
         return usuarioDao.findAllByNombre(nombre);
     }

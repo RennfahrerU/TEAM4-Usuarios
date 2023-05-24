@@ -28,7 +28,6 @@ public interface IUsuarioService {
      * @param nombre Recibe el nombre del usuario a buscar
      * @return Devuelve el JSON de ese usuario
      */
-    Usuario findByNombre(String nombre);
 
     List<Usuario> findAllByNombre(String nombre);
 }
