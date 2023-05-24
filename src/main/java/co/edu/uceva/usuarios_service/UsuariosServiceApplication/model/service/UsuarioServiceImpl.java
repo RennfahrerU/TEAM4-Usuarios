@@ -44,4 +44,9 @@ public class UsuarioServiceImpl implements IUsuarioService {
         return usuarioDao.findAllByNombreIgnoreCase(nombre);
     }
 
+    @Override
+    public List<Usuario> searchByNombre(String nombre) {
+        return usuarioDao.searchByNombre(nombre.toLowerCase());
+    }
+
 }

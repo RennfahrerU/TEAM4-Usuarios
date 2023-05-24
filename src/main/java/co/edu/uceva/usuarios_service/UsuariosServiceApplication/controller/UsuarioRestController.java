@@ -81,4 +81,9 @@ public class UsuarioRestController {
     public Usuario actualizarUsuario(@RequestBody Usuario usuario) {
         return usuarioService.update(usuario);
     }
+
+    @GetMapping("/buscarusuariosnombre/{nombre}")
+    public List<Usuario> buscarPorNombreCoincidente(@PathVariable String nombre) {
+        return usuarioService.searchByNombre(nombre);
+    }
 }

@@ -30,4 +30,5 @@ public interface IUsuarioService {
      */
 
     List<Usuario> findAllByNombre(String nombre);
+    List<Usuario> searchByNombre(String nombre);
 }
