@@ -9,5 +9,5 @@ import java.util.List;
 
 public interface IUsuarioDao extends CrudRepository<Usuario, Long> {
     List<Usuario> findAllByNombre(String nombre);
-
+    List<Usuario> findAllByNombreIgnoreCase(String nombre);
 }

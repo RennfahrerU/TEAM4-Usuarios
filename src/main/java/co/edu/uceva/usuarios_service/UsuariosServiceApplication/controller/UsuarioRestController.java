@@ -55,6 +55,9 @@ public class UsuarioRestController {
      */
     @PostMapping("/usuarioservice/crearusuario")
     public Usuario crearUsuario(@RequestBody Usuario usuario) {
+        // Convertir nombre y apellido a mayúsculas
+        //usuario.setNombre(usuario.getNombre().toUpperCase());
+        //usuario.setApellido(usuario.getApellido().toUpperCase());
         return usuarioService.save(usuario);
     }
 
