@@ -46,12 +46,9 @@ public class UsuarioServiceImpl implements IUsuarioService {
 
     @Override
     public List<Usuario> buscarPorNombreYApellido(String termino) {
-        String[] terminos = termino.toLowerCase().split(" ");
-        String nombreTerminos = terminos[0] + "%";
-        String apellidoTerminos = "%";
-        if (terminos.length > 1) {
-            apellidoTerminos = terminos[1] + "%";
-        }
-        return usuarioDao.buscarPorNombreYApellido(nombreTerminos, apellidoTerminos);
+        return usuarioDao.buscarPorNombreYApellido(termino.toLowerCase());
     }
+
+
+
 }

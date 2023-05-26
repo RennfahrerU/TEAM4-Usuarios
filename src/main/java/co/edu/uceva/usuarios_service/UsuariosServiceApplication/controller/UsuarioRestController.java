@@ -83,7 +83,7 @@ public class UsuarioRestController {
     }
 
     /**
-     * Función para buscar a una persona por su nombre y apellido. Busca por ambas coincidencias, si el nombre no coincide pero si el apellido igual lo muestra.
+     * Función para buscar a una persona por su nombre y apellido. Si se busca nombre incompleto y luego apellido no encuentra. Si se busca nombre completo y apellido incompleto sí encuentra.
      * @param termino Recibe el nombre y apellido, si van los dos tiene que ser exacto.
      * @return Las personas que coincidan con el parámetro dado en la DB.
      */
