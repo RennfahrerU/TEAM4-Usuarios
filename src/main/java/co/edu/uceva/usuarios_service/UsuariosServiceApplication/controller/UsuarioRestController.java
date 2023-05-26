@@ -55,6 +55,9 @@ public class UsuarioRestController {
      */
     @PostMapping("/crearusuario")
     public Usuario crearUsuario(@RequestBody Usuario usuario) {
+        // Convertir nombre y apellido a mayúsculas
+        //usuario.setNombre(usuario.getNombre().toUpperCase());
+        //usuario.setApellido(usuario.getApellido().toUpperCase());
         return usuarioService.save(usuario);
     }
 
@@ -77,5 +80,15 @@ public class UsuarioRestController {
     @PutMapping("/editarusuario")
     public Usuario actualizarUsuario(@RequestBody Usuario usuario) {
         return usuarioService.update(usuario);
+    }
+
+    /**
+     * Función para buscar a una persona por su nombre y apellido. Si se busca nombre incompleto y luego apellido no encuentra. Si se busca nombre completo y apellido incompleto sí encuentra.
+     * @param termino Recibe el nombre y apellido, si van los dos tiene que ser exacto.
+     * @return Las personas que coincidan con el parámetro dado en la DB.
+     */
+    @GetMapping("usuarioservice/buscarnombreyapellido/{termino}")
+    public List<Usuario> buscarPorNombreYApellido(@PathVariable String termino) {
+        return usuarioService.buscarPorNombreYApellido(termino);
     }
 }

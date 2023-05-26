@@ -41,7 +41,14 @@ public class UsuarioServiceImpl implements IUsuarioService {
 
     @Override
     public List<Usuario> findAllByNombre(String nombre) {
-        return usuarioDao.findAllByNombre(nombre);
+        return usuarioDao.findAllByNombreIgnoreCase(nombre);
     }
+
+    @Override
+    public List<Usuario> buscarPorNombreYApellido(String termino) {
+        return usuarioDao.buscarPorNombreYApellido(termino.toLowerCase());
+    }
+
+
 
 }
