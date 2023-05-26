@@ -87,7 +87,7 @@ public class UsuarioRestController {
      * @param termino Recibe el nombre y apellido, si van los dos tiene que ser exacto.
      * @return Las personas que coincidan con el parámetro dado en la DB.
      */
-    @GetMapping("/buscarusuariosnombreyapellido/{termino}")
+    @GetMapping("usuarioservice/buscarnombreyapellido/{termino}")
     public List<Usuario> buscarPorNombreYApellido(@PathVariable String termino) {
         return usuarioService.buscarPorNombreYApellido(termino);
     }
@@ -99,7 +99,7 @@ public class UsuarioRestController {
      * @return Las coincidencias más cercanas en la DB
      */
 
-    @GetMapping("/buscarusuariosnombreyapellido2/{nombre}/{apellido}")
+    @GetMapping("usuarioservice/buscarnombreyapellido2/{nombre}/{apellido}")
     public List<Usuario> buscarPorNombreYApellido(@PathVariable String nombre, @PathVariable String apellido) {
         return usuarioService.buscarPorNombreYApellido2(nombre, apellido);
     }
