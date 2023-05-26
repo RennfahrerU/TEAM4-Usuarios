@@ -63,7 +63,7 @@ import static org.junit.jupiter.api.Assertions.*;
         // Realizar la solicitud GET y realizar las verificaciones
         this.mockMvc.perform(get("/usuario-service/listarusuarios"))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$", hasSize(10))
+                .andExpect(jsonPath("$", hasSize(2)))
                 .andExpect(jsonPath("$[0].nombre", is(usuario1.getNombre())))
                 .andExpect(jsonPath("$[0].apellido", is(usuario1.getApellido())))
                 .andExpect(jsonPath("$[0].email", is(usuario1.getEmail())))
