@@ -46,13 +46,12 @@ public class UsuarioServiceImpl implements IUsuarioService {
 
     @Override
     public List<Usuario> buscarPorNombreYApellido(String termino) {
-        return usuarioDao.buscarPorNombreYApellido(termino.toLowerCase());
+        String[] terminos = termino.toLowerCase().split(" ");
+        String nombreTerminos = terminos[0] + "%";
+        String apellidoTerminos = "%";
+        if (terminos.length > 1) {
+            apellidoTerminos = terminos[1] + "%";
+        }
+        return usuarioDao.buscarPorNombreYApellido(nombreTerminos, apellidoTerminos);
     }
-
-    @Override
-    public List<Usuario> buscarPorNombreYApellido2(String nombre, String apellido) {
-        return usuarioDao.findAllByNombreContainingIgnoreCaseAndApellidoContainingIgnoreCase(nombre, apellido);
-    }
-
-
 }
