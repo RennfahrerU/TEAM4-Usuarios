@@ -91,6 +91,4 @@ public class UsuarioRestController {
     public List<Usuario> buscarPorNombreYApellido(@PathVariable String termino) {
         return usuarioService.buscarPorNombreYApellido(termino);
     }
-
-    //Arreglado
 }
