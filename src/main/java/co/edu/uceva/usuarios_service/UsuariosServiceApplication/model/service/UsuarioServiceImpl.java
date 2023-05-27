@@ -48,7 +48,4 @@ public class UsuarioServiceImpl implements IUsuarioService {
     public List<Usuario> buscarPorNombreYApellido(String termino) {
         return usuarioDao.buscarPorNombreYApellido(termino.toLowerCase());
     }
-
-
-
 }

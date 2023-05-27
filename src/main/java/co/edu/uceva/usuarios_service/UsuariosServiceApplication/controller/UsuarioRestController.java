@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-//@RequestMapping("/usuario-service")
+@RequestMapping("/usuario-service")
 public class UsuarioRestController {
     @Autowired
     IUsuarioService usuarioService;
@@ -23,7 +23,7 @@ public class UsuarioRestController {
      *
      * @return Lista de usuarios en JSON
      */
-    @GetMapping("/usuarioservice/listarusuarios")
+    @GetMapping("/listarusuarios")
     public List<Usuario> listar() {
         return usuarioService.findAll();
     }
@@ -33,7 +33,7 @@ public class UsuarioRestController {
      * @param id Este recibe el ID del usuario
      * @return Retorna la información del usuario con ese ID en la DB
      */
-    @GetMapping("/usuarioservice/buscarusuarioid/{id}")
+    @GetMapping("/buscarusuarioid/{id}")
     public Usuario buscarUsuario(@PathVariable("id") Long id) {//pathvariable es para sacar de la url esa palabra id
         return usuarioService.findById(id);
     }
@@ -43,7 +43,7 @@ public class UsuarioRestController {
      * @param nombre Recibe el nombre del usuario a buscar
      * @return Retorna una lista de usuarios que comparten ese nombre
      */
-    @GetMapping("/usuarioservice/buscarusuariosnombre/{nombre}")
+    @GetMapping("/buscarusuariosnombre/{nombre}")
     public List<Usuario> buscarPorNombre(@PathVariable String nombre) {
         return usuarioService.findAllByNombre(nombre);
     }
@@ -53,7 +53,7 @@ public class UsuarioRestController {
      * @param usuario Recibe el JSON con los campos necesarios para agregarlos a la DB
      * @return El usuario se agrega a la lista ya existente con un ID automático
      */
-    @PostMapping("/usuarioservice/crearusuario")
+    @PostMapping("/crearusuario")
     public Usuario crearUsuario(@RequestBody Usuario usuario) {
         // Convertir nombre y apellido a mayúsculas
         //usuario.setNombre(usuario.getNombre().toUpperCase());
@@ -65,7 +65,7 @@ public class UsuarioRestController {
      * Función para eliminar un usuario existente en la DB
      * @param id Recibe el id del usuario a eliminar
      */
-    @DeleteMapping("usuarioservice/eliminarusuario/{id}")
+    @DeleteMapping("/eliminarusuario/{id}")
     public void borrarUsuario(@PathVariable("id") Long id) {
         Usuario usuario;
         usuario = usuarioService.findById(id); //Busca el usuario con id #
@@ -77,18 +77,20 @@ public class UsuarioRestController {
      * @param usuario Recibe el JSON con el ID del usuario a editar y los nuevos valores de los campos
      * @return El usuario con los nuevos valores en la DB
      */
-    @PutMapping("usuarioservice/editarusuario")
+    @PutMapping("/editarusuario")
     public Usuario actualizarUsuario(@RequestBody Usuario usuario) {
         return usuarioService.update(usuario);
     }
 
     /**
-     * Función para buscar a una persona por su nombre y apellido. Si se busca nombre incompleto y luego apellido no encuentra. Si se busca nombre completo y apellido incompleto sí encuentra.
+     * Función para buscar a una persona por su nombre y apellido. Problema actual: Por ejemplo Camilo Gonzales, si se busca Camilo G lo encuentra, pero si se busca Cami G no retorna nada. Si solo se busca Cami si lo encuentra.
      * @param termino Recibe el nombre y apellido, si van los dos tiene que ser exacto.
      * @return Las personas que coincidan con el parámetro dado en la DB.
      */
-    @GetMapping("usuarioservice/buscarnombreyapellido/{termino}")
+    @GetMapping("usuarioservice/buscarusuariosnombreyapellido/{termino}")
     public List<Usuario> buscarPorNombreYApellido(@PathVariable String termino) {
         return usuarioService.buscarPorNombreYApellido(termino);
     }
+
+    //Arreglado
 }
