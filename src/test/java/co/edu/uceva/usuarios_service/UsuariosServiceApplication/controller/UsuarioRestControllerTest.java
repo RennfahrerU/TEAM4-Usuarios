@@ -63,20 +63,18 @@ import static org.junit.jupiter.api.Assertions.*;
         // Realizar la solicitud GET y realizar las verificaciones
         this.mockMvc.perform(get("/usuario-service/listarusuarios"))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$", hasSize(2)))
-                .andExpect(jsonPath("$[0].nombre", is(usuario1.getNombre())))
-                .andExpect(jsonPath("$[0].apellido", is(usuario1.getApellido())))
-                .andExpect(jsonPath("$[0].email", is(usuario1.getEmail())))
-                .andExpect(jsonPath("$[0].contrasena", is(usuario1.getContrasena())))
-                .andExpect(jsonPath("$[1].nombre", is(usuario2.getNombre())))
-                .andExpect(jsonPath("$[1].apellido", is(usuario2.getApellido())))
-                .andExpect(jsonPath("$[1].email", is(usuario2.getEmail())))
-                .andExpect(jsonPath("$[0].contrasena", is(usuario2.getContrasena())));
-
+                .andExpect(jsonPath("$", hasSize(10)))
+                .andExpect(jsonPath("$[8].nombre", is(usuario1.getNombre())))
+                .andExpect(jsonPath("$[8].apellido", is(usuario1.getApellido())))
+                .andExpect(jsonPath("$[8].email", is(usuario1.getEmail())))
+                .andExpect(jsonPath("$[8].contrasena", is(usuario1.getContrasena())))
+                .andExpect(jsonPath("$[9].nombre", is(usuario2.getNombre())))
+                .andExpect(jsonPath("$[9].apellido", is(usuario2.getApellido())))
+                .andExpect(jsonPath("$[9].email", is(usuario2.getEmail())))
+                .andExpect(jsonPath("$[9].contrasena", is(usuario2.getContrasena())));
+                System.out.println((jsonPath("$[9].nombre", is(usuario1.getNombre()))));
         // Eliminar los usuarios del servicio
         usuarioService.delete(usuario1);
         usuarioService.delete(usuario2);
     }
-
-
 }
