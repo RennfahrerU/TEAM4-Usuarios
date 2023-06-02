@@ -77,4 +77,23 @@ import static org.junit.jupiter.api.Assertions.*;
         usuarioService.delete(usuario1);
         usuarioService.delete(usuario2);
     }
+
+    @Test
+    public void testBuscarNombreyApellido() throws Exception {
+        Usuario user = new Usuario();
+        user.setNombre("Carlos");
+        user.setApellido("Pérez");
+        usuarioService.buscarPorNombreYApellido(String.valueOf(user));
+
+        usuarioService.save(user);
+
+        this.mockMvc.perform(get("/usuario-service/listarusuarios"))
+
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$", hasSize(9)))
+                .andExpect(jsonPath("$[8].nombre", is(user.getNombre())))
+                .andExpect(jsonPath("$[8].apellido", is(user.getApellido())));
+
+        usuarioService.delete(user);
+    }
 }
