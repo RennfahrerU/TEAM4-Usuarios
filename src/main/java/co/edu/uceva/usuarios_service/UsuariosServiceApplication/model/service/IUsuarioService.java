@@ -23,12 +23,10 @@ public interface IUsuarioService {
     Usuario findById(Long id);
 
     /**
-     * Esta función es la implementación de la búsqueda de acuerdo al nombre del usuario
+     * Esta función es la implementación de la búsqueda de acuerdo al nombre y apellido del usuario
      *
-     * @param nombre Recibe el nombre del usuario a buscar
+     * @param termino Recibe el nombre, apellido del usuario a buscar
      * @return Devuelve el JSON de ese usuario
      */
-
-    List<Usuario> findAllByNombre(String nombre);
     List<Usuario> buscarPorNombreYApellido(String termino);
 }

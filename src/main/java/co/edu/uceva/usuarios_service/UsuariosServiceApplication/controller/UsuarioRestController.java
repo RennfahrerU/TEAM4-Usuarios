@@ -4,13 +4,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import co.edu.uceva.usuarios_service.UsuariosServiceApplication.model.entities.Usuario;
 import co.edu.uceva.usuarios_service.UsuariosServiceApplication.model.service.IUsuarioService;
 
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/usuario-service")
@@ -31,22 +35,25 @@ public class UsuarioRestController {
     /**
      * Función para buscar un usuario de acuerdo a su ID
      * @param id Este recibe el ID del usuario
-     * @return Retorna la información del usuario con ese ID en la DB
+     * @return Retorna la información del usuario con ese ID en la DB, en caso de no encontrar el ID retorna el JSON vacío
      */
     @GetMapping("/buscarusuarioid/{id}")
-    public Usuario buscarUsuario(@PathVariable("id") Long id) {//pathvariable es para sacar de la url esa palabra id
-        return usuarioService.findById(id);
+    public ResponseEntity<Map<String, Object>> buscarUsuario(@PathVariable("id") Long id) {
+        Optional<Usuario> usuarioOptional = Optional.ofNullable(usuarioService.findById(id));
+        if (usuarioOptional.isPresent()) {
+            Usuario usuario = usuarioOptional.get();
+            Map<String, Object> response = new HashMap<>();
+            response.put("usuario", usuario);
+            return ResponseEntity.ok().body(response);
+        } else {
+            return ResponseEntity.ok().body(new HashMap<>());
+        }
     }
 
-    /**
-     * Función para listar los usuarios con un nombre en específico
-     * @param nombre Recibe el nombre del usuario a buscar
-     * @return Retorna una lista de usuarios que comparten ese nombre
-     */
-    @GetMapping("/buscarusuariosnombre/{nombre}")
-    public List<Usuario> buscarPorNombre(@PathVariable String nombre) {
-        return usuarioService.findAllByNombre(nombre);
-    }
+
+
+
+
 
     /**
      * Función para crear un usuario en la DB

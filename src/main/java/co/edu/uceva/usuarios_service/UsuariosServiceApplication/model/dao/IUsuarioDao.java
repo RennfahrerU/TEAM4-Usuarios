@@ -10,7 +10,6 @@ import org.springframework.data.repository.query.Param;
 import java.util.List;
 
 public interface IUsuarioDao extends CrudRepository<Usuario, Long> {
-    List<Usuario> findAllByNombreIgnoreCase(String nombre);
     @Query("SELECT u FROM Usuario u WHERE CONCAT(LOWER(u.nombre), ' ', LOWER(u.apellido)) LIKE %:termino%")
     List<Usuario> buscarPorNombreYApellido(@Param("termino") String termino);
 }

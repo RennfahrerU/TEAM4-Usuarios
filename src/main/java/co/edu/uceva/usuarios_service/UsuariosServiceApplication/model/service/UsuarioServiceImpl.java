@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class UsuarioServiceImpl implements IUsuarioService {
@@ -36,13 +37,10 @@ public class UsuarioServiceImpl implements IUsuarioService {
 
     @Override
     public Usuario findById(Long id) {
-        return usuarioDao.findById(id).get();
+        Optional<Usuario> usuarioOptional = usuarioDao.findById(id);
+        return usuarioOptional.orElse(null); // Retorna null si no se encuentra el usuario
     }
 
-    @Override
-    public List<Usuario> findAllByNombre(String nombre) {
-        return usuarioDao.findAllByNombreIgnoreCase(nombre);
-    }
 
     @Override
     public List<Usuario> buscarPorNombreYApellido(String termino) {
