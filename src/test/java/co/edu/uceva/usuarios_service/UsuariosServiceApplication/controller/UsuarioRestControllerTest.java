@@ -80,9 +80,13 @@ import static org.junit.jupiter.api.Assertions.*;
         usuarioService.delete(usuario2);
     }
 
+    /**
+     * Test para buscar por nombre y apellido
+     * Busca de tres formas al usuario Carlos Perez, "Car", "Carlos Pe" y "Per"
+     */
     @Test
     public void testBuscarPorParteDelNombre() throws Exception {
-        // Crea un usuario con nombre y apellido específicos
+        // Se crea un usuario con nombre y apellido específicos
         Usuario user = new Usuario();
         user.setNombre("Carlos");
         user.setApellido("Perez");
@@ -91,22 +95,51 @@ import static org.junit.jupiter.api.Assertions.*;
         usuarioService.save(user);
 
         // Realiza la búsqueda por la parte del nombre "Car"
-        MvcResult result = this.mockMvc.perform(get("/usuario-service/usuarioservice/buscarusuariosnombreyapellido/Car"))
+        MvcResult result1 = this.mockMvc.perform(get("/usuario-service/usuarioservice/buscarusuariosnombreyapellido/Car"))
                 .andExpect(status().isOk())
                 .andReturn();
 
         // Obtiene la respuesta y verifica que el resultado sea correcto
-        String response = result.getResponse().getContentAsString();
-        List<Usuario> usuariosEncontrados = new ObjectMapper().readValue(response, new TypeReference<List<Usuario>>() {});
+        String response1 = result1.getResponse().getContentAsString();
+        List<Usuario> usuariosEncontrados1 = new ObjectMapper().readValue(response1, new TypeReference<List<Usuario>>() {});
 
-        // Verifica que se encuentre el usuario con nombre "Carlos" en los resultados
-        boolean carlosEncontrado = usuariosEncontrados.stream()
+        // Verifica que se encuentre el usuario con nombre "Carlos" y apellido "Perez" en los resultados
+        boolean carlosEncontrado1 = usuariosEncontrados1.stream()
                 .anyMatch(u -> u.getNombre().equals("Carlos") && u.getApellido().equals("Perez"));
-        assertTrue(carlosEncontrado);
+        assertTrue(carlosEncontrado1);
+
+        // Realiza la búsqueda por la parte del nombre "Carlos Pe"
+        MvcResult result2 = this.mockMvc.perform(get("/usuario-service/usuarioservice/buscarusuariosnombreyapellido/Carlos Pe"))
+                .andExpect(status().isOk())
+                .andReturn();
+
+        // Obtiene la respuesta y verifica que el resultado sea correcto
+        String response2 = result2.getResponse().getContentAsString();
+        List<Usuario> usuariosEncontrados2 = new ObjectMapper().readValue(response2, new TypeReference<List<Usuario>>() {});
+
+        // Verifica que se encuentre el usuario con nombre "Carlos" y apellido "Pérez" en los resultados
+        boolean carlosEncontrado2 = usuariosEncontrados2.stream()
+                .anyMatch(u -> u.getNombre().equals("Carlos") && u.getApellido().equals("Perez"));
+        assertTrue(carlosEncontrado2);
+
+        // Realiza la búsqueda por la parte del apellido "Per"
+        MvcResult result3 = this.mockMvc.perform(get("/usuario-service/usuarioservice/buscarusuariosnombreyapellido/Per"))
+                .andExpect(status().isOk())
+                .andReturn();
+
+        // Obtiene la respuesta y verifica que el resultado sea correcto
+        String response3 = result3.getResponse().getContentAsString();
+        List<Usuario> usuariosEncontrados3 = new ObjectMapper().readValue(response3, new TypeReference<List<Usuario>>() {});
+
+        // Verifica que se encuentre el usuario con nombre "Carlos" y apellido "Pérez" en los resultados
+        boolean carlosEncontrado3 = usuariosEncontrados3.stream()
+                .anyMatch(u -> u.getNombre().equals("Carlos") && u.getApellido().equals("Perez"));
+        assertTrue(carlosEncontrado3);
 
         // Borra el usuario creado para el test
         usuarioService.delete(user);
     }
+
 
 
 }
