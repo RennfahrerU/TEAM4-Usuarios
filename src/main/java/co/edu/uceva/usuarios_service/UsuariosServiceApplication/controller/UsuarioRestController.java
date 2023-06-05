@@ -18,6 +18,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/usuario-service")
+@CrossOrigin(origins = {"http://localhost:4200", "http://localhost:8080"})
 public class UsuarioRestController {
     @Autowired
     IUsuarioService usuarioService;
@@ -49,11 +50,6 @@ public class UsuarioRestController {
             return ResponseEntity.ok().body(new HashMap<>());
         }
     }
-
-
-
-
-
 
     /**
      * Función para crear un usuario en la DB
